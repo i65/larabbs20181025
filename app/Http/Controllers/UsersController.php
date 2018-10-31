@@ -10,6 +10,11 @@ use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
+    //使用auth 中间件来验证用户
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
     //
     public function show(User $user)
     {
@@ -18,11 +23,13 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update', $user);//编辑权限控制，用户只能编辑自己的个人资料
         return view('users.edit', compact('user'));
     }
 
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
+        $this->authorize('update', $user);//同上
         $data = $request->all();
 
         if($request->avatar){
