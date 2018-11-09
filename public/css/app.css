@@ -8368,6 +8368,23 @@ body {
   margin-top: 0px;
 }
 
+.navbar-static-top .dropdown-menu {
+  padding: 0px;
+}
+
+.navbar-static-top .dropdown-menu li a {
+  border-bottom: 1px solid #d8d8d8;
+  line-height: 2.4;
+}
+
+.navbar-static-top .dropdown-menu li a .glyphicon {
+  margin-right: 8px;
+}
+
+.navbar-static-top .dropdown-menu li a .glyphicon-log-out {
+  color: #E02A1C;
+}
+
 /* 固定询问样式 */
 
 html {
