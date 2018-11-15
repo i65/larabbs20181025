@@ -40,4 +40,12 @@ class TopicObserver
             dispatch(new TranslateSlug($topic));
         }
     }
+
+    //话题连带删除，当话题被删除时，所有回复也会被清空
+    //需要注意的是，在模型监听器中，数据库操作需要避免再次 Eloquent 事件，
+    //所以这里我们使用了 DB 类进行操作。
+    public function deleted(Topic $topic)
+    {
+        \DB::table('replies')->where('topic_id', $topic->id)->delete();
+    }
 }

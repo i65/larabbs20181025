@@ -25,4 +25,10 @@ class ReplyObserver
         //
         $reply->content = clean($reply->content, 'user_topic_body');
     }
+
+    //送去话题回复数
+    public function deleted(Reply $reply)
+    {
+        $reply->topic->decrement('reply_count', 1);
+    }
 }
